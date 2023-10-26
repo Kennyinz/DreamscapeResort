@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Pago Por Medio De PayPal</title>
+  <link href="estilos.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #paypal-button-container {
+      margin: 20px;
+    }
+
+    #mensajeCompraExitosa {
+      display: none;
+      font-size: 24px;
+      font-weight: bold;
+      color: #4CAF50;
+      margin: 20px;
+    }
+
+    #regresarButton {
+      display: none;
+      background-color: #007BFF;
+      color: white;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Proceso de Pago</h1>
+  <div id="paypal-button-container"></div>
+  <div id="mensajeCompraExitosa">Compra exitosa. Gracias por su compra.</div>
+  <button id="regresarButton" onclick="regresarAlIndex()">Regresar al Menú</button>
+
+  <script src="https://www.paypal.com/sdk/js?client-id=AaVX50wmEkUREe0be3wirNZ3q5jvvrSysSn3WKrmNbh5v6ZtMKb44xFS_qXYmbuDTMB8vwdGLv_PZWYs"></script>
+
+  <script>
+    function regresarAlIndex() {
+      window.location.href = 'index.html'; // Cambia 'index.html' al nombre de tu página de inicio
+    }
+
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '200.00'
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        // El pago se ha aprobado, muestra el mensaje de compra exitosa y el botón de regresar.
+        document.getElementById("paypal-button-container").style.display = "none";
+        document.getElementById("mensajeCompraExitosa").style.display = "block";
+        document.getElementById("regresarButton").style.display = "block";
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

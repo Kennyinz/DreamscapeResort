@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Scape Resort</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Incluye el archivo JavaScript -->
+    <script src="java.js"></script>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Lora', serif;
+            background-color: #1c243b;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+/* Estilos del encabezado */
+header {
+    background-color: #1c243b;
+    color: #f9d265;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header img {
+    max-width: 20%; /* Reducido el tamaño de la imagen al 80% del contenedor */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+/* Estilos de navegación */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    background-color: #1c243b;
+    border-radius: 5px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Ajustar los botones debajo de la imagen */
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+        /* Estilos del contenido principal */
+        .main {
+            padding: 0;
+            position: relative;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        /* Estilos para el video de fondo */
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .video-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Estilos para el contenido superpuesto */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ffae00;
+            color: #003366;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+ /* Estilos para alinear el botón "Personal" a la derecha */
+ .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1c243b; /* Color de fondo de la barra de navegación */
+            padding: 10px;
+        }
+
+        .button:hover {
+            background-color: #003366;
+            color: #ffae00;
+        }
+
+        /* Estilos del pie de página */
+        footer {
+            background-color: #1c243b;
+            color: #f9d265;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Estilos para el recuadro emergente de inicio de sesión y registro */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
+        }
+
+        .login-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1c243b;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 3;
+        }
+
+        .login-box h3 {
+            font-size: 1.5rem;
+        }
+
+        .login-box form label,
+        .login-box form input[type="text"],
+        .login-box form input[type="password"],
+        .login-box form input[type="submit"] {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.25rem;
+        }
+
+        .login-box form input[type="text"],
+        .login-box form input[type="password"],
+        .login-box form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-box form input[type="submit"] {
+            background-color: #ffae00;
+            color: #003366;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .login-box form input[type="submit"]:hover {
+            background-color: #003366;
+            color: #ffae00;
+        }
+
+        .login-box p {
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .login-box p a {
+            color: #ffae00;
+            text-decoration: none;
+        }
+
+        /* Estilos para el mensaje de confirmación */
+        .confirmation-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 51, 102, 0.8);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 4;
+        }
+    </style>
+</head>
+
+<!-- Coloca el botón de PayPal en tu página -->
+<div id="paypal-button-container"></div>
+<button type="button">PayPay</button>
+<a href="https://www.paypal.com">Click aca</a>
+
+<!-- Incluye la biblioteca de PayPal -->
+<script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID"></script>
+
+<script>
+  // Configura y renderiza el botón de PayPal
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: 'TU_MONTO', // Reemplaza 'TU_MONTO' con el monto que deseas cobrar
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        alert('Pago completado por ' + details.payer.name.given_name);
+        // Aquí puedes realizar acciones adicionales después del pago, como redirigir al usuario a una página de confirmación.
+      });
+    }
+  }).render('#paypal-button-container');
+</script>
+
+</body>
+</html>
